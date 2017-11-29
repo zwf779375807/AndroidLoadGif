@@ -17,6 +17,7 @@ Android加载网络gif图片，使用retrofit+android_gif_drawable结合使用�
 # java代码调用
 
   1 从网络加载   
+		
 		GifLoadUtils.getInstance().getImageLoader(this).loadUrl("http://s9.rr.itc.cn/r/wapChange/20173_31_10/a0rq600946115627303.gif").into(gifImageView);
          
  2 从drawable或者raw加载
