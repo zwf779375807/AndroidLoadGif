@@ -78,7 +78,7 @@ class ReadImageTask {
                     }
                 } else if (mUrl.startsWith("http")) {
                     //没有缓存请求网络并且缓存
-                    HttpUtil.downloadFile(mContext, mUrl, imageView, mImageCache);
+                    HttpUtil.downloadFile(mUrl, imageView, mImageCache);
                 }
                 break;
             case DRAWABLE:

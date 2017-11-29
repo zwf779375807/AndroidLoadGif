@@ -1,19 +1,20 @@
 package com.example.gifloadlibrary;
 
-import android.content.Context;
 import android.widget.ImageView;
 
 import java.io.IOException;
 
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
 
 
 /**
@@ -26,37 +27,37 @@ public class HttpUtil {
      * @param url
      * @param imageView
      */
-    public static void downloadFile(final Context context, final String url, final ImageView imageView, final ImageCache imageCache) {
+    public static void downloadFile(final String url, final ImageView imageView, final ImageCache imageCache) {
         RetrofitHttpService downLoadService = ServiceGenerator.createDownLoadService(RetrofitHttpService.class);
         Call<ResponseBody> call = downLoadService.downloadFile(url);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, final Response<ResponseBody> response) {
-                Observable.create(new Observable.OnSubscribe<byte[]>() {
+                Observable.create(new ObservableOnSubscribe<byte[]>() {
                     @Override
-                    public void call(Subscriber<? super byte[]> subscriber) {
+                    public void subscribe(@NonNull ObservableEmitter<byte[]> e) throws Exception {
                         byte[] bytes = new byte[0];
                         try {
                             bytes = response.body().bytes();
-                        } catch (IOException e) {
-                            e.printStackTrace();
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
                         }
-                        subscriber.onNext(bytes);
+                        e.onNext(bytes);
                     }
                 }).subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Action1<byte[]>() {
+                        .subscribe(new Consumer<byte[]>() {
                             @Override
-                            public void call(byte[] data) {
+                            public void accept(@NonNull byte[] data) throws Exception {
                                 if (null != data && data.length > 0) {
                                     if (Util.doGif(imageView, data)) {// 是gif播放同时缓存
                                         cacheImage(url, data, imageCache);
                                     }
                                 }
                             }
-                        }, new Action1<Throwable>() {
+                        }, new Consumer<Throwable>() {
                             @Override
-                            public void call(Throwable throwable) {
+                            public void accept(@NonNull Throwable throwable) throws Exception {
                                 throwable.printStackTrace();
                             }
                         });
