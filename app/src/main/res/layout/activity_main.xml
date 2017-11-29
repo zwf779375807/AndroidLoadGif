@@ -21,6 +21,15 @@
             app:layout_constraintRight_toRightOf="parent"
             />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="网络加载"
+            android:textColor="@color/colorAccent"
+            android:textSize="23sp"
+            app:layout_constraintTop_toTopOf="@+id/gifimageview"
+            />
+
         <ImageView
             android:id="@+id/gifdrawable"
             android:layout_width="0dp"
@@ -28,6 +37,15 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/gifimageview"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="raw加载"
+            android:textColor="@color/colorAccent"
+            android:textSize="23sp"
+            app:layout_constraintTop_toTopOf="@+id/gifdrawable"
             />
 
         <ImageView
@@ -39,6 +57,14 @@
             app:layout_constraintTop_toBottomOf="@+id/gifdrawable"
             />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="assets加载"
+            android:textColor="@color/colorAccent"
+            android:textSize="23sp"
+            app:layout_constraintTop_toTopOf="@+id/gifasset"
+            />
 
     </android.support.constraint.ConstraintLayout>
 
