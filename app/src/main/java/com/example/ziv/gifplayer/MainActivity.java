@@ -21,8 +21,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         requestPermissions();
-        final ImageView gifImageView = (ImageView) findViewById(R.id.gifimageview);
-        GifLoadUtils.getInstance().getImageLoader(this).load("http://n1.itc.cn/img8/wb/recom/2016/08/12/147100143815015802.GIF").into(gifImageView);
+        ImageView gifImageView = (ImageView) findViewById(R.id.gifimageview);
+        ImageView gifDrawbleImageView = (ImageView) findViewById(R.id.gifdrawable);
+        ImageView gifAssetImageView = (ImageView) findViewById(R.id.gifasset);
+        GifLoadUtils.getInstance().getImageLoader(this).loadUrl("http://s9.rr.itc.cn/r/wapChange/20173_31_10/a0rq600946115627303.gif").into(gifImageView);
+        GifLoadUtils.getInstance().getImageLoader(this).loadDrawableOrRaw(R.raw.pao).into(gifDrawbleImageView);
+        GifLoadUtils.getInstance().getImageLoader(this).loadAsset("maodazan.gif").into(gifAssetImageView);
     }
 
     private void requestPermissions() {
