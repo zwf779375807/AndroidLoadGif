@@ -38,7 +38,7 @@ Android加载网络gif图片，使用retrofit+android_gif_drawable结合使用�
   	}
     
     dependencies {
-        compile 'com.github.zwf779375807:AndroidLoadGif:v1.0'
+        compile 'com.github.zwf779375807:AndroidLoadGif:v1.1'
     }
     
     
