@@ -15,9 +15,19 @@ Android加载网络gif图片，使用retrofit+android_gif_drawable结合使用�
         />
 	
 # java代码调用
-   
-       ImageView gifImageView = (ImageView) findViewById(R.id.gifimageview);
-              GifLoadUtils.getInstance().getImageLoader(this).load("http://n1.itc.cn/img8/wb/recom/2016/08/12/147100143815015802.GIF").into(gifImageView);
+
+  1 从网络加载   
+		
+		GifLoadUtils.getInstance().getImageLoader(this).loadUrl("http://s9.rr.itc.cn/r/wapChange/20173_31_10/a0rq600946115627303.gif").into(gifImageView);
+         
+ 2 从drawable或者raw加载
+ 
+        GifLoadUtils.getInstance().getImageLoader(this).loadDrawableOrRaw(R.raw.pao).into(gifDrawbleImageView);
+	
+ 3 从assets加载gif
+        
+	GifLoadUtils.getInstance().getImageLoader(this).loadAsset("maodazan.gif").into(gifAssetImageView);
+     
   
 # 如何使用
 
