@@ -2,7 +2,18 @@
 Android加载网络gif图片，使用retrofit+android_gif_drawable结合使用三级缓存方式加载gif动图
 
   ![img](https://github.com/zwf779375807/AndroidLoadGif/blob/master/app/gifload.gif)
-  
+  
+# xml中使用
+
+    <ImageView
+        android:id="@+id/gifimageview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+  
 # 如何使用
 
     allprojects {
